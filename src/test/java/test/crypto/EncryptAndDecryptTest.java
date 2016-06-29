@@ -30,7 +30,8 @@ public class EncryptAndDecryptTest {
 		}
 	}
 
-	private static final String WORK_DIR = "D:\\git-space\\cms-decrypt-example";
+	//private static final String WORK_DIR = "D:\\git-space\\cms-decrypt-example";
+	private static final String WORK_DIR = "/home/junlapong/git-space/cms-decrypt-example";
 
 	private static final File SOURCE_PDF = new File(WORK_DIR, "source.xml");
 	private static final File DESTINATION_FILE = new File(WORK_DIR, "encrypted.xml");
