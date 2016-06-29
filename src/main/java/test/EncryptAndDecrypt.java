@@ -1,4 +1,4 @@
-package no.posten.dpost;
+package test.crypto;
 
 import org.bouncycastle.cms.*;
 import org.bouncycastle.cms.jcajce.JceCMSContentEncryptorBuilder;
@@ -21,29 +21,8 @@ import java.util.Iterator;
 
 public class EncryptAndDecrypt {
 
-	private static final String WORK_DIR = "/Users/gk/digipost/cms-decrypt-example";
+	public static void decrypt(PrivateKey privateKey, File encrypted, File decryptedDestination) throws IOException, CMSException {
 
-	private static final File SOURCE_PDF = new File(WORK_DIR, "source.pdf");
-	private static final File DESTINATION_FILE = new File(WORK_DIR, "encrypted.pdf");
-	private static final File DECRYPTED_FILE = new File(WORK_DIR, "decrypted.pdf");
-
-	public static void main(final String[] args) throws Exception {
-		if (!new File(WORK_DIR).exists()) {
-			throw new RuntimeException("Update WORK_DIR to point to the directory the project is cloned into.");
-		}
-		Files.deleteIfExists(DESTINATION_FILE.toPath());
-		Files.deleteIfExists(DECRYPTED_FILE.toPath());
-
-		Security.addProvider(new BouncyCastleProvider());
-
-		X509Certificate certificate = getX509Certificate(new File(WORK_DIR, "certificate.pem"));
-		PrivateKey privateKey = getPrivateKey(new File(WORK_DIR, "certificate.p12"), "Qwer12345");
-
-		encrypt(certificate, SOURCE_PDF, DESTINATION_FILE);
-		decrypt(privateKey, DESTINATION_FILE, DECRYPTED_FILE);
-	}
-
-	private static void decrypt(PrivateKey privateKey, File encrypted, File decryptedDestination) throws IOException, CMSException {
 		byte[] encryptedData = Files.readAllBytes(encrypted.toPath());
 
 		CMSEnvelopedDataParser parser = new CMSEnvelopedDataParser(encryptedData);
@@ -58,7 +37,8 @@ public class EncryptAndDecrypt {
 		System.out.println(String.format("Decrypted '%s' to '%s'", encrypted.getAbsolutePath(), decryptedDestination.getAbsolutePath()));
 	}
 
-	private static void encrypt(X509Certificate cert, File source, File destination) throws CertificateEncodingException, CMSException, IOException {
+	public static void encrypt(X509Certificate cert, File source, File destination) throws CertificateEncodingException, CMSException, IOException {
+
 		CMSEnvelopedDataStreamGenerator gen = new CMSEnvelopedDataStreamGenerator();
 		gen.addRecipientInfoGenerator(new JceKeyTransRecipientInfoGenerator(cert));
 		OutputEncryptor encryptor = new JceCMSContentEncryptorBuilder(CMSAlgorithm.AES256_CBC).setProvider(BouncyCastleProvider.PROVIDER_NAME).build();
@@ -73,14 +53,14 @@ public class EncryptAndDecrypt {
 		System.out.println(String.format("Encrypted '%s' to '%s'", source.getAbsolutePath(), destination.getAbsolutePath()));
 	}
 
-	private static X509Certificate getX509Certificate(File certificate) throws IOException, CertificateException {
+	public static X509Certificate getX509Certificate(File certificate) throws IOException, CertificateException {
 		try (InputStream inStream = new FileInputStream(certificate)) {
 			CertificateFactory cf = CertificateFactory.getInstance("X.509");
 			return (X509Certificate) cf.generateCertificate(inStream);
 		}
 	}
 
-	private static PrivateKey getPrivateKey(File file, String password) throws Exception {
+	public static PrivateKey getPrivateKey(File file, String password) throws Exception {
 		KeyStore ks = KeyStore.getInstance("PKCS12");
 		try (FileInputStream fis = new FileInputStream(file)) {
 			ks.load(fis, password.toCharArray());

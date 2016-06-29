@@ -1,5 +1,5 @@
 .idea
 *.iml
-decrypted.pdf
-encrypted.pdf
+decrypted.*
+encrypted.*
 target
