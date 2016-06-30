@@ -1,16 +1,14 @@
 package test.crypto;
 
-import org.bouncycastle.cms.*;
-import org.bouncycastle.cms.jcajce.JceCMSContentEncryptorBuilder;
-import org.bouncycastle.cms.jcajce.JceKeyTransEnvelopedRecipient;
-import org.bouncycastle.cms.jcajce.JceKeyTransRecipientInfoGenerator;
-import org.bouncycastle.jcajce.provider.symmetric.DES;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.operator.OutputEncryptor;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
-import java.security.*;
+import java.security.KeyStore;
+import java.security.PrivateKey;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
@@ -18,6 +16,18 @@ import java.security.cert.X509Certificate;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
+
+import org.bouncycastle.cms.CMSAlgorithm;
+import org.bouncycastle.cms.CMSEnvelopedDataParser;
+import org.bouncycastle.cms.CMSEnvelopedDataStreamGenerator;
+import org.bouncycastle.cms.CMSException;
+import org.bouncycastle.cms.Recipient;
+import org.bouncycastle.cms.RecipientInformation;
+import org.bouncycastle.cms.jcajce.JceCMSContentEncryptorBuilder;
+import org.bouncycastle.cms.jcajce.JceKeyTransEnvelopedRecipient;
+import org.bouncycastle.cms.jcajce.JceKeyTransRecipientInfoGenerator;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.operator.OutputEncryptor;
 
 public class EncryptAndDecrypt {
 
@@ -72,8 +82,8 @@ public class EncryptAndDecrypt {
 	}
 
 	private static RecipientInformation getSingleRecipient(CMSEnvelopedDataParser parser) {
-		Collection recInfos = parser.getRecipientInfos().getRecipients();
-		Iterator recipientIterator = recInfos.iterator();
+		Collection<RecipientInformation> recInfos = parser.getRecipientInfos().getRecipients();
+		Iterator<RecipientInformation> recipientIterator = recInfos.iterator();
 		if (!recipientIterator.hasNext()) {
 			throw new RuntimeException("Could not find recipient");
 		}

@@ -1,24 +1,12 @@
 package test.crypto;
 
-import org.bouncycastle.cms.*;
-import org.bouncycastle.cms.jcajce.JceCMSContentEncryptorBuilder;
-import org.bouncycastle.cms.jcajce.JceKeyTransEnvelopedRecipient;
-import org.bouncycastle.cms.jcajce.JceKeyTransRecipientInfoGenerator;
-import org.bouncycastle.jcajce.provider.symmetric.DES;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.operator.OutputEncryptor;
-
-import java.io.*;
+import java.io.File;
 import java.nio.file.Files;
-import java.security.*;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
+import java.security.PrivateKey;
+import java.security.Security;
 import java.security.cert.X509Certificate;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Iterator;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.junit.Test;
 
 public class EncryptAndDecryptTest {
@@ -30,8 +18,8 @@ public class EncryptAndDecryptTest {
 		}
 	}
 
-	//private static final String WORK_DIR = "D:\\git-space\\cms-decrypt-example";
-	private static final String WORK_DIR = "/home/junlapong/git-space/cms-decrypt-example";
+	private static final String WORK_DIR = "D:\\git-space\\cms-decrypt-example";
+	//private static final String WORK_DIR = "/home/junlapong/git-space/cms-decrypt-example";
 
 	private static final File SOURCE_PDF = new File(WORK_DIR, "source.xml");
 	private static final File DESTINATION_FILE = new File(WORK_DIR, "encrypted.xml");
