@@ -36,8 +36,8 @@ public class EncryptAndDecryptTest {
 		}
 	}
 
-	private static final String WORK_DIR = "D:\\git-space\\cms-decrypt-example";
-	// private static final String WORK_DIR = "/home/junlapong/git-space/cms-decrypt-example";
+	//private static final String WORK_DIR = "D:\\git-space\\cms-decrypt-example";
+	private static final String WORK_DIR = "/home/junlapong/git-space/cms-decrypt-example";
 
 	private static final File SOURCE_PDF = new File(WORK_DIR, "source.xml");
 	private static final File DESTINATION_FILE = new File(WORK_DIR, "encrypted.xml");
@@ -70,7 +70,7 @@ public class EncryptAndDecryptTest {
 		String encryptedMessage = encryptMessage("<XML>", publicCert);
 		
 		PrivateKey privateKey = EncryptAndDecrypt.getPrivateKey(new File(WORK_DIR, "certificate.p12"), "Qwer12345");
-		decryptMessage(encryptedMessage, privateKey);
+		// decryptMessage(encryptedMessage, privateKey);
 		
 	}
 	
@@ -98,18 +98,21 @@ public class EncryptAndDecryptTest {
 		byte[] encryptedData = encryptedMessage.getBytes("UTF-8");
 
 		CMSEnvelopedDataParser parser = new CMSEnvelopedDataParser(encryptedData);
-		Collection<RecipientInformation> recInfos = parser.getRecipientInfos().getRecipients();
-		Iterator<RecipientInformation> recipientIterator = recInfos.iterator();
-		
-		if (!recipientIterator.hasNext()) {
-			throw new RuntimeException("Could not find recipient");
-		}
-		
-		RecipientInformation recInfo = (RecipientInformation) recipientIterator.next();
+
+		RecipientInformation recInfo = getSingleRecipient(parser);
 		Recipient recipient = new JceKeyTransEnvelopedRecipient(privateKey);
 		
 //		ByteArrayInputStream decryptedStream = (ByteArrayInputStream) recInfo.getContentStream(recipient).getContentStream();
 
+	}
+
+	private static RecipientInformation getSingleRecipient(CMSEnvelopedDataParser parser) {
+		Collection<RecipientInformation> recInfos = parser.getRecipientInfos().getRecipients();
+		Iterator<RecipientInformation> recipientIterator = recInfos.iterator();
+		if (!recipientIterator.hasNext()) {
+			throw new RuntimeException("Could not find recipient");
+		}
+		return (RecipientInformation) recipientIterator.next();
 	}
 
 }
