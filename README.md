@@ -1,6 +1,7 @@
 # CMS (PKCS#7) Java Example
 
-[RFC-2315 PKCS #7: Cryptographic Message Syntax Version 1.5](https://tools.ietf.org/html/rfc2315)
+- [RFC-2315 PKCS #7: Cryptographic Message Syntax Version 1.5](https://tools.ietf.org/html/rfc2315)
+- [Java Cryptography Samples](http://www.jensign.com/JavaScience/javacrypto/)
 
 ## Certificate
 
