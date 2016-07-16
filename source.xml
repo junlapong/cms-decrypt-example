@@ -1,4 +1,3 @@
-<!-- LSS Initiate Request XML -->
 <LSSecure>
 	<InitRequest>
 		<Version></Version>
@@ -13,68 +12,3 @@
 		</PurchaseDetails>
 	</InitRequest>
 </LSSecure>
-
-<!-- LSS Initiate Response XML -->
-<LSSecure>
-	<InitResponse>
-		<Version></Version>
-		<TxnID></TxnID>
-		<Status></Status>
-		<ITMXToken></ITMXToken>
-		<AuthURL></AuthURL>
-		<RespCode></RespCode>
-		<RespDescription></RespDescription>
-	</InitResponse>
-</LSSecure>
-
-<!-- LSS Authentication Request XML -->
-<LSSecure>
-	<AuthRequest>
-		<Version></Version>
-		<TxnID></TxnID>
-		<PAN></PAN>
-		<ITMXToken></ITMXToken>
-		<MerchantURL></MerchantURL>
-		<MerchantDetails>
-			<AcquirerBIN></AcquirerBIN>
-			<MID></MID>
-			<Name></Name>
-		</MerchantDetails>
-		<PurchaseDetails>
-			<TxnDate></TxnDate>
-			<TxnAmount></TxnAmount>
-			<TxnCurrency></TxnCurrency>
-			<Exponent></Exponent>
-			<TxnDescription></TxnDesciption>
-		</PurchaseDetails>
-	</AuthRequest>
-</LSSecure>
-
-<!-- LSS Authentication Response XML -->
-<LSSecure>
-	<AuthResponse>
-		<Version></Version>
-		<TxnID></TxnID>
-		<PAN></PAN>
-		<ITMXToken></ITMXToken>
-		<MerchantDetails>
-			<AcquirerBIN></AcquirerBIN>
-			<MID></MID>
-			<Name></Name>
-		</MerchantDetails>
-		<PurchaseDetails>
-			<TxnDate></TxnDate>
-			<TxnAmount></TxnAmount>
-			<TxnCurrency></TxnCurrency>
-			<Exponent></Exponent>
-			<TxnDescription></TxnDesciption>
-		</PurchaseDetails>
-		<IssuerRefID></IssuerRefID>
-		<LSAuthStatus></LSAuthStatus>
-		<LSAV></LSAV>
-		<RespCode></RespCode>
-		<RespDescription></RespDescription>
-	</AuthResponse>
-</LSSecure>
-
-<!-- END -->
