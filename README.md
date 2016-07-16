@@ -1,5 +1,7 @@
 # CMS (PKCS#7) Java Example
 
+[RFC-2315 PKCS #7: Cryptographic Message Syntax Version 1.5](https://tools.ietf.org/html/rfc2315)
+
 ## Certificate
 
 - `certificate.pem` - certificate (public key) used for encryption
@@ -13,10 +15,10 @@ keytool -list -v -storetype pkcs12 -keystore keystore.p12
 
 ### export public key
 ```
-#### PEM (ASCII)
+### PEM (ASCII) ###
 keytool -exportcert -alias itmxlss025 -storetype PKCS12 -keystore keystore.p12 -rfc -file public-key.PEM.cer
 
-#### DER (BINARY)
+### DER (BINARY) ###
 keytool -exportcert -alias itmxlss025 -storetype PKCS12 -keystore keystore.p12 -file public-key.DER.cer
 ```
 
