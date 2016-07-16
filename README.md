@@ -2,6 +2,8 @@
 
 - [RFC-2315 PKCS #7: Cryptographic Message Syntax Version 1.5](https://tools.ietf.org/html/rfc2315)
 - [Java Cryptography Samples](http://www.jensign.com/JavaScience/javacrypto/)
+- [PKCS7 encoding in Java without external libs like BouncyCastle etc](http://security.stackexchange.com/questions/13910/pkcs7-encoding-in-java-without-external-libs-like-bouncycastle-etc)
+- [PKCS7 Signatures using Bouncy Castle](http://i-proving.com/2007/09/21/pkcs7-signatures-using-bouncy-castle/)
 
 ## Certificate
 
