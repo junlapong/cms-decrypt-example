@@ -1,7 +1,13 @@
-# CMS (PKCS#7) Java Example
+# CMS (PKCS #7) Java Example
 
 - [RFC-2315 PKCS #7: Cryptographic Message Syntax Version 1.5](https://tools.ietf.org/html/rfc2315)
+- [Cryptographic Message Syntax (CMS)](http://www.ietf.org/rfc/rfc3369.txt)
+- [PKCS7 Signatures using Bouncy Castle](http://i-proving.com/2007/09/21/pkcs7-signatures-using-bouncy-castle/)
+- [** Cryptographie avec Bouncy Castle](http://nyal.developpez.com/tutoriel/java/bouncycastle/)
+- [Aki-SSL/src/aki/packages/pkcs7/PKCS7.java](https://github.com/thedrummeraki/Aki-SSL/blob/master/src/aki/packages/pkcs7/PKCS7.java)
+- [Correct way to sign and verify signature using bouncycastle](http://stackoverflow.com/questions/16662408/correct-way-to-sign-and-verify-signature-using-bouncycastle)
 - [Java Cryptography Samples](http://www.jensign.com/JavaScience/javacrypto/)
+- [PKCS7 encoding in Java without external libs like BouncyCastle etc](http://security.stackexchange.com/questions/13910/pkcs7-encoding-in-java-without-external-libs-like-bouncycastle-etc)
 
 ## Certificate
 
