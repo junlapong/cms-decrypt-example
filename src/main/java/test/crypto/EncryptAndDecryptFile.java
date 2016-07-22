@@ -29,7 +29,7 @@ import org.bouncycastle.cms.jcajce.JceKeyTransRecipientInfoGenerator;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.operator.OutputEncryptor;
 
-public class EncryptAndDecrypt {
+public class EncryptAndDecryptFile {
 
 	public static void decrypt(PrivateKey privateKey, File encrypted, File decryptedDestination) throws IOException, CMSException {
 
