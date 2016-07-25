@@ -12,7 +12,7 @@
 ## Certificate
 
 - `certificate.pem` - certificate (public key) used for encryption
-- `certificate.p12` - private key used for decryption
+- `keystore.p12` - private key used for decryption
 
 ### create keystore
 ```

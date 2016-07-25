@@ -8,6 +8,9 @@
 	<version>1.0</version>
 
 	<properties>
+        <java.version>1.6</java.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <bc.version>1.54</bc.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -18,13 +21,13 @@
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
-			<version>1.54</version>
+			<version>${bc.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcmail-jdk15on</artifactId>
-			<version>1.54</version>
+			<artifactId>bcpkix-jdk15on</artifactId>
+			<version>${bc.version}</version>
 		</dependency>
 
         <dependency>
@@ -38,6 +41,26 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
+
+		<!-- Logging: slf4j and log4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>junit</groupId>
