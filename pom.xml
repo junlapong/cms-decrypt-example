@@ -8,7 +8,7 @@
 	<version>1.0</version>
 
 	<properties>
-        <java.version>1.6</java.version>
+        <java.version>1.8</java.version>
         <slf4j.version>1.7.21</slf4j.version>
         <bc.version>1.54</bc.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

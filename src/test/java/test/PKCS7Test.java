@@ -1,6 +1,7 @@
-package poc;
+package test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.security.KeyStore;
@@ -8,6 +9,8 @@ import java.security.PrivateKey;
 import java.security.Signature;
 import java.security.cert.X509Certificate;
 import java.util.Enumeration;
+
+import org.junit.Test;
 
 import sun.security.pkcs.ContentInfo;
 import sun.security.pkcs.PKCS7;
@@ -17,17 +20,23 @@ import sun.security.util.DerValue;
 import sun.security.x509.AlgorithmId;
 import sun.security.x509.X500Name;
 
-public class GenPKCS7 {
+import org.bouncycastle.util.encoders.Base64;
 
-	static final String STORENAME = "c:/fileName.p12";
-	static final String STOREPASS = "password";
+@SuppressWarnings("restriction")
+public class PKCS7Test {
 
-	public static void main(String[] args) throws Exception {
+	static final String STORENAME = "keystore.p12";
+	static final String STOREPASS = "Qwer12345";
+
+	@Test
+	public void shouldGenPKCS7() throws Exception {
+
+		String KEYSTORE_PATH = new File("./" + STORENAME).getCanonicalPath();
 
 		// First load the keystore object by providing the p12 file path
 		KeyStore clientStore = KeyStore.getInstance("PKCS12");
 		// replace testPass with the p12 password/pin
-		clientStore.load(new FileInputStream(STORENAME), STOREPASS.toCharArray());
+		clientStore.load(new FileInputStream(KEYSTORE_PATH), STOREPASS.toCharArray());
 
 		Enumeration<String> aliases = clientStore.aliases();
 		String aliaz = "";
@@ -37,6 +46,7 @@ public class GenPKCS7 {
 				break;
 			}
 		}
+
 		X509Certificate c = (X509Certificate) clientStore.getCertificate(aliaz);
 
 		// Data to sign
@@ -67,6 +77,10 @@ public class GenPKCS7 {
 		// Write PKCS7 to bYteArray
 		ByteArrayOutputStream bOut = new DerOutputStream();
 		p7.encodeSignedData(bOut);
+
 		byte[] encodedPKCS7 = bOut.toByteArray();
+
+		System.out.println(new String(Base64.encode(encodedPKCS7)));
+
 	}
 }
