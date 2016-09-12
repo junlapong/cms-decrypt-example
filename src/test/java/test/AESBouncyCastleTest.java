@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.codec.binary.Hex;
 import org.bouncycastle.crypto.BlockCipher;
@@ -62,7 +63,7 @@ public class AESBouncyCastleTest {
 	    return new BigInteger(b2).toString(36);
 	}
 	
-	@Test
+	//@Test
 	public void shouldEncryptAndDecrypt() throws Exception {
 
 		KeyGenerator kg = KeyGenerator.getInstance("AES");
@@ -95,6 +96,28 @@ public class AESBouncyCastleTest {
 
 		String decrypted = new String(ba, "UTF-8");
 		System.out.println(decrypted);
+	}
+	
+	@Test
+	public void shouldDecrypt() throws Exception {
+		
+		String secretKey = "4C3999AE56352653CC33F9521B3BEE75A5C36A52F628AB2644DB968B46C8D373";
+		//String encMessage = "F7C45B0BFC04C56B80F782DC9890D502"; // -> Hello world!!
+		String encMessage = "27385E349F14AB1DEAAE621A58C50DB4"; // -> {aaa:"123"}
+		
+		AESBouncyCastleTest abc = new AESBouncyCastleTest();
+		abc.setPadding(new PKCS7Padding());
+		
+		byte[] sc = DatatypeConverter.parseHexBinary(secretKey);
+		//byte[] sc = Hex.decodeHex(secretKey.toCharArray());
+		byte[] encr = Hex.decodeHex(encMessage.toCharArray());
+		
+		byte[] retr = abc.decrypt(encr, sc);
+		System.out.println("Decrypted : " + Hex.encodeHexString(retr));
+
+		String decrypted = new String(retr, "UTF-8");
+		System.out.println(decrypted);	
+		
 	}
 
 }
