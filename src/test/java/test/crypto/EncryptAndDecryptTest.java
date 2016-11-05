@@ -8,6 +8,7 @@ import java.security.cert.X509Certificate;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.junit.Test;
+import org.junit.Ignore;
 
 public class EncryptAndDecryptTest {
 
@@ -34,6 +35,7 @@ public class EncryptAndDecryptTest {
 	public static final String SIGNATURE_ALGORITHM = "SHA1withRSA";
 
 	@Test
+	//@Ignore
 	public void shouldEncryptAndDecryptFile() throws Exception {
 
 		if (!new File(WORK_DIR).exists()) {
